@@ -9,10 +9,14 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('admin/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                @if(auth()->user()->img)
+                <img src="{{ asset('storage/user_images/' . auth()->user()->img) }}" class="img-circle elevation-2" alt="User Image">
+                @else
+                <img src="https://ui-avatars.com/api/?name={{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}" class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ auth()->user()->getFullName()}}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
